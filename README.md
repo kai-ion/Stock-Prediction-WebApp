@@ -1,4 +1,8 @@
-# Stock Prediction WebApp
+# Stock Prediction WebApp Demo
+
+- Link to demo hosted by streamlit: [Link](https://kaiion-stock-prediction-webapp.streamlit.app/)
+
+# Stock Prediction WebApp Tasks
 
 | Task           | Current Status |
 |----------------|----------------|
