@@ -6,13 +6,17 @@ from prophet import Prophet
 from prophet.plot import plot_plotly
 from plotly import graph_objects as go
 
-start = "2015-01-01"
+start = "2010-01-01"
 end = date.today().strftime("%Y-%m-%d")
 
 st.title("Stock Prediction App")
 
-stocks = ("AAPL", "GOOG", "MSFT", "TSLA")
-selectedStocks = st.selectbox("Select dateset for prediction", stocks)
+# stocks = ("AAPL", "GOOG", "MSFT", "TSLA")
+# selectedStocks = st.selectbox("Select dateset for prediction", stocks)
+
+#take user input
+selectedStocks = st.text_input('Enter Stock Ticker: (Example: AAPL, GOOG, MSFT, TSLA)', 'AAPL')
+
 
 nYears = st.slider("Years of prediction:", 1, 4)
 period = nYears * 365
