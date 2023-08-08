@@ -10,6 +10,32 @@ import streamlit as st
 import yfinance as yfin
 yfin.pdr_override()
 
+def valid_ticker(t):
+    """
+    Check whether given ticker is a valid stock symbol.
+
+    NOTE: Assumes that a stock is valid IF Yahoo! Finance returns info for a ticker
+
+    Args:
+        ticker (str): Ticker symbol in question.
+
+    Returns:
+        if an error have been raised, an error message will be returned
+        else return the ticker and the price 
+    """
+    tickers = yfin.Ticker(t)
+
+    try:
+        price = round(get_current_price(t), 2)
+        return(f"Current Price of {t}: {price:.2f}")
+    except:
+        return(f"Cannot get info of {t}, it probably does not exist")
+
+def get_current_price(t):
+    ticker = yfin.Ticker(t)
+    todays_data = ticker.history(period='1d')
+    return todays_data['Close'][0]
+
 # model is based on the close price, can also be built on high, low, or open price
 
 #initiate a start and end time for our dataframe
@@ -22,6 +48,10 @@ st.title('Stock Trend Prediction')
 
 #take user input
 userInput = st.text_input('Enter Stock Ticker', 'AAPL')
+
+st.write(valid_ticker(userInput))
+
+
 df = pdr.get_data_yahoo(userInput, start=start, end=end)
 
 #we have to reverse the dataframe because stooq gives us the data in reverse
