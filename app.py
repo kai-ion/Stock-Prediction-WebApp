@@ -2,9 +2,13 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import pandas_datareader as data
+from pandas_datareader import data as pdr
 import datetime as dt
 from keras.models import load_model
 import streamlit as st
+
+import yfinance as yfin
+yfin.pdr_override()
 
 # model is based on the close price, can also be built on high, low, or open price
 
@@ -18,7 +22,7 @@ st.title('Stock Trend Prediction')
 
 #take user input
 userInput = st.text_input('Enter Stock Ticker', 'AAPL')
-df = data.DataReader(userInput, 'stooq', start, end)
+df = pdr.get_data_yahoo(userInput, start=start, end=end)
 
 #we have to reverse the dataframe because stooq gives us the data in reverse
 df = df[::-1]
