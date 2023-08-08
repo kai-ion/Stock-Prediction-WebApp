@@ -17,13 +17,13 @@
 
 
 ### Resources
-    - https://www.youtube.com/watch?v=s3CnE2tqQdo&ab_channel=GeeksforGeeks |complete | 
+    - https://www.youtube.com/watch?v=s3CnE2tqQdo&ab_channel=GeeksforGeeks |complete | LSTM Model |
     - https://www.youtube.com/watch?v=0E_31WqVzCY&ab_channel=PatrickLoeber |complete | 
     - https://www.youtube.com/watch?v=brGWvfBC6W0&ab_channel=PatrickLoeber |complete | 
-    - https://www.youtube.com/watch?v=QIUxPv5PJOY&ab_channel=ComputerScience
+    - https://www.youtube.com/watch?v=QIUxPv5PJOY&ab_channel=ComputerScience |inprogress | LSTM-model-2 |
     - https://www.youtube.com/watch?v=1O_BenficgE&ab_channel=Dataquest
     - https://www.youtube.com/watch?v=xfzGZB4HhEE&ab_channel=freeCodeCamp.org
-    - https://www.youtube.com/watch?v=PuZY9q-aKLw&ab_channel=NeuralNine |inprogress | 
+    - https://www.youtube.com/watch?v=PuZY9q-aKLw&ab_channel=NeuralNine 
     - https://www.youtube.com/watch?v=SSu00IRRraY&list=PL2-dafEMk2A6QKz1mrk1uIGfHkC1zZ6UU&index=5&ab_channel=SirajRaval
 
     Stock price web app
