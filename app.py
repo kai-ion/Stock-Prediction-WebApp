@@ -58,8 +58,10 @@ end = dt.datetime.today()
 st.title('Stock Trend Prediction')
 
 #take user input
-userInput = st.text_input('Enter Stock Ticker', 'AAPL')
+st.write("Enter Stock Ticker Below")
+userInput = st.text_input('Example: AAPL, GOOG, MSFT, TSLA', 'AAPL')
 
+#validates user input
 st.write(valid_ticker(userInput))
 
 
