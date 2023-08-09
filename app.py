@@ -32,6 +32,17 @@ def valid_ticker(t):
         return(f"Cannot get info of {t}, it probably does not exist")
 
 def get_current_price(t):
+    """
+    get the last closing price of a stock t
+
+    NOTE: Assumes that a stock is valid because this function is passed through the valid_ticker function
+
+    Args:
+        ticker (str): Ticker symbol in question.
+
+    Returns:
+        return the last closed priced of a stock
+    """
     ticker = yfin.Ticker(t)
     todays_data = ticker.history(period='1d')
     return todays_data['Close'][0]

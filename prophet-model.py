@@ -1,12 +1,47 @@
 import streamlit as st
 from datetime import date
 
-import yfinance as yf
+import yfinance as yfin
 from prophet import Prophet
 from prophet.plot import plot_plotly
 from plotly import graph_objects as go
 
+def valid_ticker(t):
+    """
+    Check whether given ticker is a valid stock symbol.
 
+    NOTE: Assumes that a stock is valid IF Yahoo! Finance returns info for a ticker
+
+    Args:
+        ticker (str): Ticker symbol in question.
+
+    Returns:
+        if an error have been raised, an error message will be returned
+        else return the ticker and the price 
+    """
+    tickers = yfin.Ticker(t)
+
+    try:
+        price = round(get_current_price(t), 2)
+        return(f"Current Price of {t}: {price:.2f}")
+    except:
+        return(f"Cannot get info of {t}, it probably does not exist")
+
+def get_current_price(t):
+    """
+    get the last closing price of a stock t
+
+    NOTE: Assumes that a stock is valid because this function is passed through the valid_ticker function
+
+    Args:
+        ticker (str): Ticker symbol in question.
+
+    Returns:
+        return the last closed priced of a stock
+    """
+    ticker = yfin.Ticker(t)
+    todays_data = ticker.history(period='1d')
+    return todays_data['Close'][0]
 
 start = "2010-01-01"
 end = date.today().strftime("%Y-%m-%d")
@@ -19,20 +54,22 @@ st.title("Stock Prediction App")
 
 #take user input
 st.write("Enter Stock Ticker Below")
-selectedStocks = st.text_input('Example: AAPL, GOOG, MSFT, TSLA', 'AAPL')
+userInput = st.text_input('Example: AAPL, GOOG, MSFT, TSLA', 'AAPL')
 
+#validates user input
+st.write(valid_ticker(userInput))
 
 nYears = st.slider("Years of prediction:", 1, 4)
 period = nYears * 365
 
 @st.cache_data
 def load_data(ticker):
-    data = yf.download(ticker, start, end)
+    data = yfin.download(ticker, start, end)
     data.reset_index(inplace=True)
     return data
 
 data_load_state = st.text("Load data...")
-data = load_data(selectedStocks)
+data = load_data(userInput)
 data_load_state.text("Loading data...done!")
 
 st.subheader('Raw data')
